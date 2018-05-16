@@ -12,6 +12,6 @@ public class Calculate {
 		System.out.println("Hello World");
 	}
 	public String echo(String name) {
-		return "Eho, echo, echo : " + name;
+		return "Echo, echo, echo : " + name;
 	}
 }
