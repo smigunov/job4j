@@ -15,7 +15,7 @@ public class Converter {
 
 
     public int rubleToEuro(int value) {
-        return value * rateEUR;
+        return value / rateEUR;
     }
 
     /**
@@ -24,6 +24,6 @@ public class Converter {
      * @return Доллоры
      */
     public int rubleToDollar(int value) {
-        return value * rateUSD;
+        return value / rateUSD;
     }
 }
