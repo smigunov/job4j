@@ -18,6 +18,13 @@ public class MaxTest {
     }
 
     @Test
+    public void whenFirstLessSecondAndThird() {
+        Max maxim = new Max();
+        int result = maxim.max(1, 2, 3);
+        assertThat(result, is(3));
+    }
+
+    @Test
     public void whenSummation1And2Then3() {
         Max maxim = new Max();
         int result = maxim.summation(1, 2);

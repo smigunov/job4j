@@ -25,6 +25,17 @@ public class Max {
     }
 
     /**
+     * Возвращает максимальное из трех чисел
+     * @param first  Первое число
+     * @param second  Второе число
+     * @param third  Третье число
+     * @return Маквимальное из двух.
+     */
+    public int max(int first, int second, int third){
+        return max(max(first, second), third);
+    }
+
+    /**
      * Возвращает сумму двух чисел
      * @param first  Первое число
      * @param second  Второе число
