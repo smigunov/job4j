@@ -13,13 +13,6 @@ public class Max {
      * @return Маквимальное из двух.
      */
     public int max(int first, int second){
-        /*if (first > second){
-            return first;
-        }
-
-        if (second > first){
-            return second;
-        }*/
 
         return (first > second) ? first : second;
     }
