@@ -28,8 +28,8 @@ public class TriangleTest {
 
     @Test
     public void whenSides3and4and5thenPeriod6() {
-        Triangle trg = new Triangle();
-        double prd = trg.period(3, 4, 5);
+        //Triangle trg = new Triangle();
+        double prd = Triangle.period(3, 4, 5);
         assertThat(
                 prd,
                 closeTo(6, 0.1)

@@ -5,9 +5,6 @@ public class Triangle {
     private Point b;
     private Point c;
 
-    public Triangle() {
-
-    }
 
     public Triangle(Point a, Point b, Point c) {
         this.a = a;
@@ -27,7 +24,7 @@ public class Triangle {
      * @param bc расстояние между точками b c
      * @return Перимент.
      */
-    public double period(double ab, double ac, double bc) {
+    public static double period(double ab, double ac, double bc) {
         return (ab + ac + bc) / 2;
     }
 
@@ -60,11 +57,6 @@ public class Triangle {
      * @return
      */
     public boolean exist(double ab, double ac, double bc) {
-        if ((ab + ac > bc) && (ac + bc > ab) && (ab + bc > ac)) {
-            return true;
-        }
-
-        return false;
-
+        return ((ab + ac > bc) && (ac + bc > ab) && (ab + bc > ac));
     }
 }
