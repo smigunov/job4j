@@ -9,7 +9,7 @@ public class Check {
             if (i > 0) {
                 result = (prevVal == data[i]);
                 if (!result) {
-                    return false;
+                    break;
                 }
             }
             prevVal = data[i];
