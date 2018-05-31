@@ -12,7 +12,7 @@ public class Max {
      * @param second  Второе число
      * @return Маквимальное из двух.
      */
-    public int max(int first, int second){
+    public int max(int first, int second) {
 
         return (first > second) ? first : second;
     }
@@ -24,7 +24,7 @@ public class Max {
      * @param third  Третье число
      * @return Маквимальное из двух.
      */
-    public int max(int first, int second, int third){
+    public int max(int first, int second, int third) {
         return max(max(first, second), third);
     }
 

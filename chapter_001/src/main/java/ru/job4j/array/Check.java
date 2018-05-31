@@ -5,10 +5,11 @@ public class Check {
         boolean result = false;
         boolean prevVal = false;
         for (int i = 0; i < data.length; i++) {
-            if (i > 0){
+            if (i > 0) {
                 result = !(prevVal ^ data[i]);
-                if (!result) return result;
-            }
+                if (!result) {
+                    return result;
+                }
             prevVal = data[i];
         }
         return result;

@@ -10,11 +10,11 @@ public class Counter {
     public int add(int start, int finish) {
         int evenStart = start;  // Ближайшее четное к start
         int evenSum = 0;            // Сумма всех четных чисел
-        if (start % 2 != 0){
+        if (start % 2 != 0) {
             evenStart  = start + 1;
         }
 
-        for(int i = evenStart; i <= finish; i = i + 2){
+        for (int i = evenStart; i <= finish; i = i + 2) {
             evenSum = evenSum + i;
         }
 

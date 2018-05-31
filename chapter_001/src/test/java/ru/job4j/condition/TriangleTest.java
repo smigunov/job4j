@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
  */
 public class TriangleTest {
     @Test
-    public void whenSides3and3and4_2thenArea4_5() {
+    public void whenSides3and3and42thenArea45() {
         Point a = new Point(1, 1);
         Point b = new Point(4, 4);
         Point c = new Point(4, 1);

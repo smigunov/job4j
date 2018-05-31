@@ -23,9 +23,9 @@ public class Paint {
      * Повторяет входную строку n раз
      * @param n  количество повторов
      */
-    public static String repeat(String s, int n){
+    public static String repeat(String s, int n) {
         String result = "";
-        for (int i = 1; i <= n; i++){
+        for (int i = 1; i <= n; i++) {
             result += s;
         }
         return result;
@@ -39,7 +39,7 @@ public class Paint {
     public String drawPyramid(int height) {
         String result = "";
 
-        for (int i=1; i<=height; i++){
+        for (int i = 1; i <= height; i++)   {
             String leftPart = lpad(repeat("^", 2 * i - 1), height + i - 1);
             String rightPart = rpad(leftPart, 2 * height - 1);
             result += rightPart;
