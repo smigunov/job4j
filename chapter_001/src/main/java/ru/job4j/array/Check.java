@@ -4,12 +4,14 @@ public class Check {
     public boolean mono(boolean[] data) {
         boolean result = false;
         boolean prevVal = false;
+
         for (int i = 0; i < data.length; i++) {
             if (i > 0) {
-                result = !(prevVal ^ data[i]);
+                result = (prevVal == data[i]);
                 if (!result) {
-                    return result;
+                    return false;
                 }
+            }
             prevVal = data[i];
         }
         return result;
