@@ -9,14 +9,14 @@ public class ArrayDuplicate {
      * @param k - позиция, на которую начинаем двигать
      * @return сдвинутый массив.
      */
-    public String[] remove(String[] array) {
+    /*public String[] remove(String[] array) {
         public void shiftLeft( int k) {
             for (int i = k; i < array.length - 1; i++ ) {
                 array[i] = array[i + 1];
             }
         }
 
-        public boolean
+       // public boolean
 
         int doublesCount = 0;
 
@@ -32,5 +32,6 @@ public class ArrayDuplicate {
             doublesCount++;
         }
     }
+    */
 
 }
