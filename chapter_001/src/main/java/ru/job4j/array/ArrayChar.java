@@ -22,10 +22,9 @@ public class ArrayChar {
 
         if (this.data.length < value.length) {
             result = false;
-        }
-        else {
+        } else {
             for (int i = 0; i < value.length; i++) {
-                if (this.data[i] != value[i]){
+                if (this.data[i] != value[i]) {
                     result = false;
                     break;
                 }
