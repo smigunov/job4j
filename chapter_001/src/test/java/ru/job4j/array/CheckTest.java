@@ -28,4 +28,21 @@ public class CheckTest {
         boolean result = check.mono(input);
         assertThat(result, is(false));
     }
+
+    @Test
+    public void whenArrayFilledByTrue() {
+        Check check = new Check();
+        boolean[] input = new boolean[] {true, true, true};
+        boolean result = check.arrFilledByTrue(input);
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void whenArrayNotFilledByTrue() {
+        Check check = new Check();
+        boolean[] input = new boolean[] {true, true, false};
+        boolean result = check.arrFilledByTrue(input);
+        assertThat(result, is(false));
+    }
+
 }
