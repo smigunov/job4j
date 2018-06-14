@@ -4,7 +4,7 @@ public class MatrixCheck {
     /**
      * Перечислялка диагоналей: Main - главная,  Collateral - Побочная
      */
-    public enum enDiag {
+    public enum DiagType {
             Main, Collateral
     }
     /**
@@ -13,14 +13,14 @@ public class MatrixCheck {
      * @param diag Флаг диагонали. Main - главная,  Collateral - Побочная
      * @return
      */
-    public boolean checkDiagFilledTrue(boolean[][] data, enDiag diag ) {
+    public boolean checkDiagFilledTrue(boolean[][] data, DiagType diag) {
         int arrLength = data.length;
         for (int i = 0; i < arrLength; i++) {
-            if (diag == enDiag.Main) {      // Главная диагональ
+            if (diag == DiagType.Main) {      // Главная диагональ
                 if (!data[i][i]) {
                     return false;
                 }
-            } else if (diag == enDiag.Collateral) { // Побочная диагнональ
+            } else if (diag == DiagType.Collateral) { // Побочная диагнональ
                 if (!data[arrLength - i - 1][i]) {
                     return false;
                 }

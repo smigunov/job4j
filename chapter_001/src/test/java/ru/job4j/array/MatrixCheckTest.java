@@ -37,7 +37,7 @@ public class MatrixCheckTest {
                 {false, true, true},
                 {false, false, true}
         };
-        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.enDiag.Main);
+        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.DiagType.Main);
         assertThat(result, is(true));
     }
 
@@ -48,7 +48,7 @@ public class MatrixCheckTest {
                 {false, false, true},
                 {false, false, false}
         };
-        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.enDiag.Main);
+        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.DiagType.Main);
         assertThat(result, is(false));
     }
 
@@ -60,7 +60,7 @@ public class MatrixCheckTest {
                 {false, false, true},
                 {false, false, true}
         };
-        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.enDiag.Main);
+        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.DiagType.Main);
         assertThat(result, is(false));
     }
 
@@ -72,7 +72,7 @@ public class MatrixCheckTest {
                 {false, true, true},
                 {false, false, true}
         };
-        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.enDiag.Main);
+        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.DiagType.Main);
         assertThat(result, is(false));
     }
 
@@ -84,7 +84,7 @@ public class MatrixCheckTest {
                 {false, true, true},
                 {true, false, false}
         };
-        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.enDiag.Collateral);
+        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.DiagType.Collateral);
         assertThat(result, is(true));
     }
 
@@ -97,7 +97,7 @@ public class MatrixCheckTest {
                 {false, false, true},
                 {true, false, true}
         };
-        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.enDiag.Collateral);
+        boolean result = check.checkDiagFilledTrue(input, MatrixCheck.DiagType.Collateral);
         assertThat(result, is(false));
     }
 

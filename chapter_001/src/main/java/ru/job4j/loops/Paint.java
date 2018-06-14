@@ -9,12 +9,11 @@ public class Paint {
      */
     public String drawPyramid(int height) {
         StringBuilder screen = new StringBuilder();
-        for(int h = 0; h < height; h++) {
+        for (int h = 0; h < height; h++) {
             for (int l = 0; l < (2 * height - 1); l++) {
                 if ((l >= (height - 1) - h) && ((l <= (height - 1) + h))) {
                     screen.append("^");
-                }
-                else {
+                } else {
                     screen.append(" ");
                 }
             }
