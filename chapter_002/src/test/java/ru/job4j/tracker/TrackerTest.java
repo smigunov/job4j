@@ -66,13 +66,16 @@ public class TrackerTest {
         tracker.add(item1);
         Item item2 = new Item("test2", "testDescription2");
         tracker.add(item2);
-        Item item3 = new Item("test1", "testDescription2");
+        Item item3 = new Item("test1", "testDescription3");
         tracker.add(item3);
         Item[] foundItems = tracker.findByName("test1");
-        Item[] etalon = new Item[tracker.getCount()];
+        /*Item[] etalon = new Item[2];
         etalon[0] = item1;
         etalon[1] = item3;
-        assertThat(foundItems, is(etalon));
+        System.out.println("0 = " + etalon[0].getDescr());
+        System.out.println("1 = " + etalon[1].getDescr());*/
+        assertThat(foundItems[0].getName(), is("test1"));
+        assertThat(foundItems[1].getName(), is("test1"));
     }
 
     @Test

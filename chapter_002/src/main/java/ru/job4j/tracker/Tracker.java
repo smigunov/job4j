@@ -64,7 +64,9 @@ class Tracker {
                 idx++;
             }
         }
-        return foundItems;
+        Item[] result = new Item[idx];
+        System.arraycopy(foundItems, 0, result, 0, idx);
+        return result;
     }
 
     public Item findById(String id) {

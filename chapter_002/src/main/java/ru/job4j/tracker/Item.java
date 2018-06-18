@@ -8,7 +8,7 @@ class Item {
     
     public Item(String name, String description) {
         this.name = name;
-        this.desc = desc;
+        this.desc = description;
         this.comments = new String[100];
         this.created = System.currentTimeMillis();
     }
@@ -23,6 +23,10 @@ class Item {
 
     public String getName() {
         return this.name;
+    }
+
+    public String getDescr() {
+        return this.desc;
     }
 
 }
