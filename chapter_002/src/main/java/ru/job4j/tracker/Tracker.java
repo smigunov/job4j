@@ -7,12 +7,12 @@ class Tracker {
 
     private String generateId() {
         String newId = new String("ITEM-");
-        newId.concat(Integer.toString(this.maxId));
+        newId = newId.concat(Integer.toString(this.maxId));
         this.maxId++;
         return newId;
     }
 
-    public void add(Item item) {
+    public void add(Item item) {       
         item.setId(generateId());
         this.items[this.position] = item;
         this.position++;
@@ -22,7 +22,7 @@ class Tracker {
         int result = -1;
         if (this.position > 0) {
             for (int i = 0; i < this.position; i++) {
-                if (this.items[i].getId() == id) {
+                if (this.items[i].getId().equals(id)) {
                     result = i;
                     break;
                 }
@@ -31,8 +31,8 @@ class Tracker {
         return result;
     }
 
-    public void replace(String id, Item item) {
-        int pos = getPositionById(id);
+    public void replace(Item item) {
+        int pos = getPositionById(item.getId());
         if (pos >= 0) {
             this.items[pos] = item;
         }
@@ -48,14 +48,18 @@ class Tracker {
     }
 
     public Item[] getAll() {
-        return this.items;
+        Item[] result = new Item[this.position];
+        for (int i = 0; i < this.position; i++) {
+            result[i] = this.items[i];
+        }
+        return result;
     }
 
     public Item[] findByName(String name) {
-        Item[] foundItems = new Item[100];
+        Item[] foundItems = new Item[this.position];
         int idx = 0;
         for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getName() == name) {
+            if (this.items[i].getName().equals(name)) {
                 foundItems[idx] = this.items[i];
                 idx++;
             }
@@ -69,5 +73,9 @@ class Tracker {
             return  this.items[pos];
         }
         return null;
+    }
+
+    public int getCount() {
+        return this.position;
     }
 }

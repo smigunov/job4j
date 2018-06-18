@@ -20,10 +20,10 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item1 = new Item("test1", "testDescription");
         tracker.add(item1);
-        String id1 = item1.getId();
         Item item2 = new Item("test2", "testDescription2");
-        tracker.replace(id1, item2);
-        Item[] items = new Item[100];
+        item2.setId(item1.getId());
+        tracker.replace(item2);
+        Item[] items = new Item[tracker.getCount()];
         items[0] = item2;
         assertThat(tracker.getAll(), is(items));
     }
@@ -38,10 +38,10 @@ public class TrackerTest {
         Item item3 = new Item("test3", "testDescription3");
         tracker.add(item3);
         Item item4 = new Item("test4", "testDescription4");
-        tracker.add(item4);
-        String id = item4.getId();
+        tracker.add(item4);       
         Item itemRepl = new Item("testRepl", "testDescriptionRepl");
-        tracker.replace(id, itemRepl);
+        itemRepl.setId(item4.getId());
+        tracker.replace(itemRepl);
         assertThat(tracker.getAll()[3], is(itemRepl));
     }
 
@@ -54,7 +54,7 @@ public class TrackerTest {
         Item item2 = new Item("test2", "testDescription2");
         tracker.add(item2);
         tracker.delete(id1);
-        Item[] items = new Item[100];
+        Item[] items = new Item[tracker.getCount()];
         items[0] = item2;
         assertThat(tracker.getAll(), is(items));
     }
@@ -69,7 +69,7 @@ public class TrackerTest {
         Item item3 = new Item("test1", "testDescription2");
         tracker.add(item3);
         Item[] foundItems = tracker.findByName("test1");
-        Item[] etalon = new Item[100];
+        Item[] etalon = new Item[tracker.getCount()];
         etalon[0] = item1;
         etalon[1] = item3;
         assertThat(foundItems, is(etalon));
