@@ -1,5 +1,5 @@
 package ru.job4j.tracker;
-class Tracker{
+class Tracker {
     private Item[] items = new Item[100];
     private int position = 0;
     private int maxId = 1;
@@ -54,7 +54,7 @@ class Tracker{
     public Item[] findByName(String name) {
         Item[] foundItems = new Item[100];
         int idx = 0;
-        for(int i = 0; i < this.position; i++) {
+        for (int i = 0; i < this.position; i++) {
             if (this.items[i].getName() == name) {
                 foundItems[idx] = this.items[i];
                 idx++;
