@@ -29,4 +29,11 @@ class Item {
         return this.desc;
     }
 
+    public void setName(String newName) {
+        this.name = newName;
+    }
+
+    public void setDescr(String newDescr) {
+        this.desc = newDescr;
+    }
 }
