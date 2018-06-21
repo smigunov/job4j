@@ -6,6 +6,18 @@ public class StubOutput implements Output {
         this.phrases = phrases;
     }
     public void say(String str) {
+        return;
+    }
+    
+    public void answer(String str) {
         phrases[this.position++] = str;
+    }
+
+    public String[] getPhrases() {
+        String[] result = new String[this.position];
+        for (int i = 0; i < this.position; i++) {
+            result[i] = this.phrases[i];
+        }
+        return result;
     }
 } 

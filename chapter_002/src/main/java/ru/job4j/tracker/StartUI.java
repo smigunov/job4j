@@ -46,7 +46,7 @@ public class StartUI {
         outStr.append(item.getName());
         outStr.append(" : ");
         outStr.append(item.getDescr());
-        output.say(outStr.toString());
+        output.answer(outStr.toString());
     }
 
     private void showAllItems() {
@@ -58,7 +58,7 @@ public class StartUI {
     private void editItem() {
         Item item = this.tracker.findById(input.ask("Enter Item ID:"));
         if (item == null) {
-            output.say("Item not found");
+            output.answer("Item not found");
         } else {
             item.setName(input.ask("Enter new Name:"));
             item.setDescr(input.ask("Enter new Description:"));
@@ -69,7 +69,7 @@ public class StartUI {
         String id = input.ask("Enter Item ID:");
         Item item = this.tracker.findById(id);
         if (item == null) {
-            output.say("Item not found");
+            output.answer("Item not found");
         } else {
             this.tracker.delete(id);
         }
@@ -78,7 +78,7 @@ public class StartUI {
     private void findByID() {
         Item item = this.tracker.findById(input.ask("Enter Item ID:"));
         if (item == null) {
-            output.say("Item not found");
+            output.answer("Item not found");
         } else {
             printItem(item);
         }
@@ -117,7 +117,7 @@ public class StartUI {
                     exitProgram = true;
                     break;
                 default :
-                    output.say("I'm confused... Please choose the correct menu item.");
+                    output.answer("I'm confused... Please choose the correct menu item.");
             }
         } while (!exitProgram);
     }
