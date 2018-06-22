@@ -36,8 +36,8 @@ public class StartUITest {
     }
 
     @Test
-    public void whenAddNewAndFindByIdAndShowAll() {
-        Input input = new StubInput(new String[] {"0", "testName1", "TestDescr1", "0", "testName2", "TestDescr2", "4", "ITEM-2", "1", "6" });
+    public void whenAddNewAndFindById() {
+        Input input = new StubInput(new String[] {"0", "testName1", "TestDescr1", "0", "testName2", "TestDescr2", "4", "ITEM-2", "6" });
         StubOutput output = new StubOutput(new String[100]);
         StartUI ui = new StartUI(input, output);
         ui.init();
@@ -46,7 +46,7 @@ public class StartUITest {
     }
 
     @Test
-    public void whenAddNewAndFindByNameAndShowAll() {
+    public void whenAddNewAndFindByName() {
         Input input = new StubInput(new String[] {"0", "testName1", "TestDescr1", "0", "testName2", "TestDescr2", "0", "testName2", "TestDescr3", "5", "testName2", "6" });
         StubOutput output = new StubOutput(new String[100]);
         StartUI ui = new StartUI(input, output);

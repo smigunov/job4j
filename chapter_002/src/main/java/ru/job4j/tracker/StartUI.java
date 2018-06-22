@@ -22,104 +22,16 @@ public class StartUI {
         this.output = output;
     }
 
-    private void showMenu() {
-        output.say("0. Add new Item");
-        output.say("1. Show all items");
-        output.say("2. Edit item");
-        output.say("3. Delete item");
-        output.say("4. Find item by Id");
-        output.say("5. Find items by name");
-        output.say("6. Exit Program");
-    }
-
-    private void addItemDialog() {
-        String name = input.ask("Enter Item name:");
-        String descr = input.ask("Enter Item description:");
-        Item item = new Item(name, descr);
-        this.tracker.add(item);
-    }
-
-    private void printItem(Item item) {
-        StringBuffer outStr = new StringBuffer();   
-        outStr.append(item.getId());
-        outStr.append(" : ");
-        outStr.append(item.getName());
-        outStr.append(" : ");
-        outStr.append(item.getDescr());
-        output.answer(outStr.toString());
-    }
-
-    private void showAllItems() {
-        for (Item item : this.tracker.getAll()) {
-            printItem(item);
-        }
-    }
-
-    private void editItem() {
-        Item item = this.tracker.findById(input.ask("Enter Item ID:"));
-        if (item == null) {
-            output.answer("Item not found");
-        } else {
-            item.setName(input.ask("Enter new Name:"));
-            item.setDescr(input.ask("Enter new Description:"));
-        }
-    }
-
-    private void deleteItem() {
-        String id = input.ask("Enter Item ID:");
-        Item item = this.tracker.findById(id);
-        if (item == null) {
-            output.answer("Item not found");
-        } else {
-            this.tracker.delete(id);
-        }
-    }
-
-    private void findByID() {
-        Item item = this.tracker.findById(input.ask("Enter Item ID:"));
-        if (item == null) {
-            output.answer("Item not found");
-        } else {
-            printItem(item);
-        }
-    }
-
-    private void findByName() {
-        for (Item item : this.tracker.findByName(input.ask("Enter Item name:"))) {
-            printItem(item);
-        }
-    }
-
     public void init() {
         this.tracker = new Tracker();
+        MenuTracker menu = new MenuTracker(this.input, this.output, this.tracker);
         boolean exitProgram = false;
+        menu.fillActions();
         do {
-            showMenu();            
-            switch (input.ask("Your choice:")) {
-                case ADD : 
-                    addItemDialog();
-                    break;
-                case SHOW_ALL :
-                    showAllItems();
-                    break;
-                case EDIT :
-                    editItem();
-                    break;
-                case DELETE :
-                    deleteItem();
-                    break;
-                case FIND_BY_ID : 
-                    findByID();
-                case FIND_BY_NAME :
-                    findByName();
-                    break;
-                case EXIT :
-                    exitProgram = true;
-                    break;
-                default :
-                    output.answer("I'm confused... Please choose the correct menu item.");
-            }
-        } while (!exitProgram);
+            menu.show();   
+            int key = Integer.valueOf(input.ask("Your choice:"));
+            menu.select(key);            
+        } while (!menu.doesHeWants2Exit());
     }
     
 
