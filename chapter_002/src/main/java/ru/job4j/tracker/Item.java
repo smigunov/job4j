@@ -36,4 +36,14 @@ class Item {
     public void setDescr(String newDescr) {
         this.desc = newDescr;
     }
+
+    public String toString() {
+        StringBuffer outStr = new StringBuffer();   
+        outStr.append(this.getId());
+        outStr.append(" : ");
+        outStr.append(this.getName());
+        outStr.append(" : ");
+        outStr.append(this.getDescr());
+        return outStr.toString();
+    }
 }
