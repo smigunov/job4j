@@ -21,15 +21,15 @@ public class StartUI {
         menu.fillActions();
         do {
             menu.show();   
-            int key = Integer.valueOf(input.ask("Your choice:"));
+            int key = input.ask("Your choice:", new int[] {0, 1, 2, 3, 4, 5, 6});
             menu.select(key);            
         } while (!menu.doesHeWants2Exit());
     }
     
 
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
         Output output = new ConsoleOutput();
+        Input input = new ValidateInput(output);
         new StartUI(input, output).init();
     }
 }
