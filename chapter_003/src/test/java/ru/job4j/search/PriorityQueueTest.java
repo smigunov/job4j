@@ -26,4 +26,28 @@ public class PriorityQueueTest {
         result = queue.take();
         assertThat(result.getDesc(), is("middle"));
     }
+    @Test
+    public void whenMiddlePriority2() {
+        PriorityQueue queue = new PriorityQueue();
+        queue.put(new Task("low", 5));
+        queue.put(new Task("urgent", 2));
+        queue.put(new Task("middle", 3));
+        queue.put(new Task("middle", 8));
+
+        Task result = queue.take();
+        assertThat(result.getPriority(), is(2));
+    }
+
+    @Test
+    public void whenMiddlePriority3() {
+        PriorityQueue queue = new PriorityQueue();
+        queue.put(new Task("low", 5));
+        queue.put(new Task("urgent", 2));
+        queue.put(new Task("middle", 3));
+        queue.put(new Task("middle", 8));
+        queue.put(new Task("megaUrgent", 1));
+
+        Task result = queue.take();
+        assertThat(result.getPriority(), is(1));
+    }
 }

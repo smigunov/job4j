@@ -13,7 +13,7 @@ public class PriorityQueue {
      */
 
     private int getPriorityIndex(int priority) {
-        int index = 0;
+        int index = this.tasks.size();
         for (int i = 0; i < this.tasks.size(); i++) {
             if (this.tasks.get(i).getPriority() > priority) {
                 index = i;
