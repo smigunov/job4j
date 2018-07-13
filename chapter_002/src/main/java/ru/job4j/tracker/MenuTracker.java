@@ -1,10 +1,13 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MenuTracker {
     private Input input;
     private Output output;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[7];
+    private List<UserAction> actions = new ArrayList<UserAction>();
     private boolean exitProgram = false;
 
     public MenuTracker(Input input, Output output, Tracker tracker) {
@@ -14,20 +17,19 @@ public class MenuTracker {
     }
 
     public void fillActions() {
-        //this.actions[0] = this.new AddItem(this.input, this.output, this.tracker);
-        this.actions[0] = this.new AddItem(0, "Add new item");
-        this.actions[1] = new MenuTracker.ShowAll(1, "Show all items");
-        this.actions[2] = this.new EditItem(2, "Edit item");
-        this.actions[3] = new DeleteItem(3, "Delete item");
-        this.actions[4] = this.new FindByID(4, "Find item by Id");
-        this.actions[5] = this.new FindByName(5, "Find item by name");
+        this.actions.add(this.new AddItem(0, "Add new item"));
+        this.actions.add(new MenuTracker.ShowAll(1, "Show all items"));
+        this.actions.add(this.new EditItem(2, "Edit item"));
+        this.actions.add(new DeleteItem(3, "Delete item"));
+        this.actions.add(this.new FindByID(4, "Find item by Id"));
+        this.actions.add(this.new FindByName(5, "Find item by name"));
     }
 
     public void select(int key) {
         if (key == 6) {
             this.exitProgram = true;
         } else {
-            this.actions[key].execute(this.input, this.output, this.tracker);
+            this.actions.get(key).execute(this.input, this.output, this.tracker);
         }
     }
 

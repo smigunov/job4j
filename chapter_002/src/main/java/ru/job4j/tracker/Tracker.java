@@ -1,7 +1,10 @@
 package ru.job4j.tracker;
+
+import java.util.ArrayList;
+import java.util.List;
+
 class Tracker {
-    private Item[] items = new Item[100];
-    private int position = 0;
+    private List<Item> items = new ArrayList<Item>();
     private int maxId = 1;
 
 
@@ -14,15 +17,14 @@ class Tracker {
 
     public void add(Item item) {       
         item.setId(generateId());
-        this.items[this.position] = item;
-        this.position++;
+        this.items.add(item);
     }
 
     private int getPositionById(String id) {
         int result = -1;
-        if (this.position > 0) {
-            for (int i = 0; i < this.position; i++) {
-                if (this.items[i].getId().equals(id)) {
+        if (this.items.size() > 0) {
+            for (int i = 0; i < this.items.size(); i++) {
+                if (this.items.get(i).getId().equals(id)) {
                     result = i;
                     break;
                 }
@@ -34,50 +36,46 @@ class Tracker {
     public void replace(Item item) {
         int pos = getPositionById(item.getId());
         if (pos >= 0) {
-            this.items[pos] = item;
+            this.items.set(pos, item);
         }
     }
 
     public void delete(String id) {
-        int pos = getPositionById(id);
-        if ((pos >= 0) && (pos < this.position  - 1)) {
-            System.arraycopy(this.items, pos + 1, this.items, pos, this.position - pos - 1);
+        for (Item item : this.items) {
+            if (id.equals(item.getId())) {
+                this.items.remove(item);
+                break;
+            }
         }
-        this.items[this.position - 1] = null;
-        this.position--;
     }
 
-    public Item[] getAll() {
-        Item[] result = new Item[this.position];
-        for (int i = 0; i < this.position; i++) {
-            result[i] = this.items[i];
-        }
-        return result;
+    //public Item[] getAll() {
+    public List<Item> getAll() {
+        return this.items;
     }
 
-    public Item[] findByName(String name) {
-        Item[] foundItems = new Item[this.position];
+
+    public List<Item> findByName(String name) {
+        List<Item> foundItems = new ArrayList<Item>();
         int idx = 0;
-        for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getName().equals(name)) {
-                foundItems[idx] = this.items[i];
+        for (Item item : this.items) {
+            if (item.getName().equals(name)) {
+                foundItems.add(item);
                 idx++;
             }
         }
-        Item[] result = new Item[idx];
-        System.arraycopy(foundItems, 0, result, 0, idx);
-        return result;
+        return foundItems;
     }
 
     public Item findById(String id) {
         int pos = getPositionById(id);
         if (pos >= 0) {
-            return  this.items[pos];
+            return  this.items.get(pos);
         }
         return null;
     }
 
     public int getCount() {
-        return this.position;
+        return this.items.size();
     }
 }

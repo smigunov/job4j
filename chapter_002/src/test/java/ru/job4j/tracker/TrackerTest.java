@@ -5,6 +5,8 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 import java.beans.Transient;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TrackerTest {
     @Test
@@ -12,7 +14,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription");
         tracker.add(item);
-        assertThat(tracker.getAll()[0], is(item));
+        assertThat(tracker.getAll().get(0), is(item));
     }
 
     @Test
@@ -23,8 +25,8 @@ public class TrackerTest {
         Item item2 = new Item("test2", "testDescription2");
         item2.setId(item1.getId());
         tracker.replace(item2);
-        Item[] items = new Item[tracker.getCount()];
-        items[0] = item2;
+        List<Item> items = new ArrayList<Item>();
+        items.add(item2);
         assertThat(tracker.getAll(), is(items));
     }
 
@@ -42,7 +44,7 @@ public class TrackerTest {
         Item itemRepl = new Item("testRepl", "testDescriptionRepl");
         itemRepl.setId(item4.getId());
         tracker.replace(itemRepl);
-        assertThat(tracker.getAll()[3], is(itemRepl));
+        assertThat(tracker.getAll().get(3), is(itemRepl));
     }
 
     @Test
@@ -54,8 +56,8 @@ public class TrackerTest {
         Item item2 = new Item("test2", "testDescription2");
         tracker.add(item2);
         tracker.delete(id1);
-        Item[] items = new Item[tracker.getCount()];
-        items[0] = item2;
+        List<Item> items = new ArrayList<Item>();
+        items.add(item2);
         assertThat(tracker.getAll(), is(items));
     }
 
@@ -68,14 +70,14 @@ public class TrackerTest {
         tracker.add(item2);
         Item item3 = new Item("test1", "testDescription3");
         tracker.add(item3);
-        Item[] foundItems = tracker.findByName("test1");
+        List<Item> foundItems = tracker.findByName("test1");
         /*Item[] etalon = new Item[2];
         etalon[0] = item1;
         etalon[1] = item3;
         System.out.println("0 = " + etalon[0].getDescr());
         System.out.println("1 = " + etalon[1].getDescr());*/
-        assertThat(foundItems[0].getName(), is("test1"));
-        assertThat(foundItems[1].getName(), is("test1"));
+        assertThat(foundItems.get(0).getName(), is("test1"));
+        assertThat(foundItems.get(1).getName(), is("test1"));
     }
 
     @Test

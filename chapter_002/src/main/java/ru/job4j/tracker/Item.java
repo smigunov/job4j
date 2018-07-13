@@ -1,15 +1,21 @@
 package ru.job4j.tracker;
+
+import java.util.ArrayList;
+import java.util.List;
+
 class Item {
     private String      id;
     private String      name;
     private String      desc;
     private long        created;
-    private String[]    comments;
+    //private String[]    comments;
+    private List<String> comments;
     
     public Item(String name, String description) {
         this.name = name;
         this.desc = description;
-        this.comments = new String[100];
+        //this.comments = new String[100];
+        this.comments = new ArrayList<String>();
         this.created = System.currentTimeMillis();
     }
 

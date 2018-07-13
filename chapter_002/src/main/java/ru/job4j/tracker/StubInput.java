@@ -10,7 +10,8 @@ public class StubInput implements Input {
     }
 
     public int ask(String question, int[] range) {
-        int key = Integer.valueOf(this.ask(question));
+        String answer = this.ask(question);
+        int key = Integer.valueOf(answer);
         boolean isInRange = false;
         for (int val : range) {
             if (key == val) {
