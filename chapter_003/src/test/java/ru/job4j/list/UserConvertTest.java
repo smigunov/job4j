@@ -15,9 +15,9 @@ public class UserConvertTest {
     public void testUserConv() {
         UserConvert usrConv = new UserConvert();
         List<User> lst = new ArrayList<User>();
-        lst.add(new User(1,"Вася", "Москва"));
-        lst.add(new User(2,"Петя", "Волгоград"));
-        lst.add(new User(3,"Маша", "Сочи"));
+        lst.add(new User(1,"Вася", "Москва", 10));
+        lst.add(new User(2,"Петя", "Волгоград", 20));
+        lst.add(new User(3,"Маша", "Сочи", 30));
         HashMap<Integer, User> mp = usrConv.process(lst);
 
         assertThat(mp.keySet().toArray(), is(new int[]{1, 2, 3}));
