@@ -8,7 +8,7 @@ public class CoffeMachine {
         private int nominal;
         private int amount;
 
-        public Coin (int nominal, int amount) {
+        public Coin(int nominal, int amount) {
             this.nominal = nominal;
             this.amount = amount;
         }
@@ -27,12 +27,12 @@ public class CoffeMachine {
     }
 
     class CoinCompare implements Comparator<Coin> {
-        public int compare (Coin a, Coin b) {
+        public int compare(Coin a, Coin b) {
             return b.nominal - a.nominal;
         }
     }
 
-    private Coin [] coins;
+    private Coin[] coins;
 
     public CoffeMachine(int[][] coins) {
         this.coins = new Coin[coins.length];
