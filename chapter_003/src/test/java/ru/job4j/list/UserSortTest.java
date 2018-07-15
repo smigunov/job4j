@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class UserSortTest {
     @Test
-    public void when3UsersThenSortByAge () throws Exception {
+    public void when3UsersThenSortByAge() throws Exception {
         List<User> userList = new ArrayList<>();
         userList.add(new User(1, "Вася", "Москва", 20));
         userList.add(new User(2, "Петя", "Волгоград", 30));
@@ -22,7 +22,7 @@ public class UserSortTest {
     }
 
     @Test
-    public void testSortNameLength () throws Exception {
+    public void testSortNameLength() throws Exception {
         List<User> userList = new ArrayList<>();
         userList.add(new User(1, "11", "Москва", 20));
         userList.add(new User(2, "1", "Волгоград", 30));
@@ -33,7 +33,7 @@ public class UserSortTest {
     }
 
     @Test
-    public void testSortByAllFields () throws Exception {
+    public void testSortByAllFields() throws Exception {
         List<User> userList = new ArrayList<>();
         userList.add(new User(1, "11", "Москва", 20));
         userList.add(new User(2, "1", "Волгоград", 30));
