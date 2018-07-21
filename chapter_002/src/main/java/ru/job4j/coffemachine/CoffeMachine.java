@@ -55,5 +55,9 @@ public class CoffeMachine {
             }
         }
         return Arrays.copyOf(preResult, idx);
+        String s;
+        s.equals()
+
     }
+
 }
