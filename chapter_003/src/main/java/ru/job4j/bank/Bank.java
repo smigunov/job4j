@@ -62,34 +62,24 @@ public class Bank {
         return result;
     }
 
+    private Account getAccount(String passport, String requisite) {
+        User user = getUser(passport);
+        Account result = null;
+        if (user != null) {
+            result = getAccount(this.userAccounts.get(user), requisite);
+        }
+        return result;
+    }
+
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String dstPassport, String dstRequisite, double amount) {
-        boolean result = true;
-        try {
-            User srcUser = getUser(srcPassport);
-            if (srcUser == null) {
-                throw new IllegalStateException("Source user not found");
-            }
-            Account srcAccount = getAccount(this.userAccounts.get(srcUser), srcRequisite);
-            if (srcAccount == null) {
-                throw new IllegalStateException("Source account not found");
-            }
-            if (srcAccount.getValue() < amount) {
-                throw new IllegalStateException("Not enough money");
-            }
-            User dstUser = getUser(dstPassport);
-            if (dstUser == null) {
-                throw new IllegalStateException("Destination user not found");
-            }
-            Account dstAccount = getAccount(this.userAccounts.get(dstUser), dstRequisite);
-            if (dstAccount == null) {
-                throw new IllegalStateException("Destination account not found");
-            }
-
+        boolean result = false;
+        Account srcAccount = getAccount(srcPassport, srcRequisite);
+        Account dstAccount = getAccount(dstPassport, dstRequisite);
+        if ((srcAccount != null) && (dstAccount != null) && (srcAccount.getValue() >= amount)) {
             srcAccount.setValue(srcAccount.getValue() - amount);
             dstAccount.setValue(dstAccount.getValue() + amount);
-        } catch (IllegalStateException ise) {
-            result = false;
+            result = true;
         }
         return result;
     }
