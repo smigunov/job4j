@@ -45,7 +45,7 @@ public class IteratorAnyArray<T> implements Iterator<T> {
     @Override
     public T next () {
         T result;
-        result = values[pos.i][pos.j];
+        result = values[pos.i][pos.j] ;
         MatrixPosition nextPos = this.getNextPosition();
         if (nextPos != null) {
             this.pos = nextPos;

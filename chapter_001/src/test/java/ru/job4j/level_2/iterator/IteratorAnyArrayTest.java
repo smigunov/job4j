@@ -22,6 +22,6 @@ public class IteratorAnyArrayTest {
         itr.next();
         itr.next();
         itr.next();
-        assertThat(itr.hasNext(), is(false));
+        assertThat(itr.hasNext(), is(false)) ;
     }
 }
