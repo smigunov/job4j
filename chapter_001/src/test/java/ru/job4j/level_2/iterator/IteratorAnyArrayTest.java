@@ -2,7 +2,7 @@ package ru.job4j.level_2.iterator;
 
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class IteratorAnyArrayTest {
