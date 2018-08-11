@@ -1,6 +1,7 @@
 package ru.job4j.level_2.iterator;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class EvenNumIterator implements Iterator<Integer> {
     private int idx;
@@ -31,6 +32,9 @@ public class EvenNumIterator implements Iterator<Integer> {
     @Override
     public Integer next () {
         idx = getNext();
+        if (idx < 0) {
+            throw new NoSuchElementException();
+        }
         return values[idx];
     }
 }
