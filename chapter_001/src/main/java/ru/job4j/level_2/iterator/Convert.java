@@ -9,12 +9,8 @@ public class Convert {
             Iterator<Integer> currentIterator;
 
             private void setCurrentIterator() {
-                if ((currentIterator == null) || (!currentIterator.hasNext())) {
-                    if (it.hasNext()) {
-                        currentIterator = it.next();
-                    } else {
-                        currentIterator = null;
-                    }
+                while (((currentIterator == null) || (!currentIterator.hasNext())) && (it.hasNext())) {
+                    currentIterator = it.next();
                 }
             }
 
