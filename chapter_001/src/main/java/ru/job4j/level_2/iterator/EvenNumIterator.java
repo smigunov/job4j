@@ -25,7 +25,6 @@ public class EvenNumIterator implements Iterator<Integer> {
         return result;
     }
 
-
     @Override
     public boolean hasNext () {
         if (this.tmpIdx < 0) {

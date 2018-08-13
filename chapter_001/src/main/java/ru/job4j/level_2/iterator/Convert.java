@@ -27,8 +27,7 @@ public class Convert {
             @Override
             public Integer next() {
                 Integer result = 0;
-                setCurrentIterator();
-                if (currentIterator != null) {
+                if (hasNext()) {
                     result = currentIterator.next();
                 } else {
                     throw new NoSuchElementException();

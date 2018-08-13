@@ -3,7 +3,9 @@ package ru.job4j.level_2.iterator;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.hamcrest.core.Is.is;
@@ -85,5 +87,15 @@ public class EvenNumIteratorTest {
         assertThat(it.next(), is(6));
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(8));
+    }
+
+    @Test
+    public void testAndrew() {
+        it = new EvenNumIterator(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8});
+        List<Integer> lst = new ArrayList<Integer>();
+        while(it.hasNext()) {
+            lst.add(it.next());
+        }
+        assertThat(lst.toArray(), is(new Integer[] {2,4,6,8}));
     }
 }
