@@ -30,7 +30,7 @@
 					  <!--finalName>strategy</finalName-->
 					  <transformers>
 						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-						  <mainClass>ru.job4j.level_1.tracker.StartUI</mainClass>
+						  <mainClass>ru.job4j.level1.tracker.StartUI</mainClass>
 						  <!--mainClass>Paint</mainClass-->
 						</transformer>
 					  </transformers>
