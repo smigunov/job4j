@@ -26,7 +26,12 @@ public class SimpleArray<T> implements Iterable<T> {
                 this.values[i - 1] = values[i];
             }
             this.length--;
+            this.idx--;
         }
+    }
+
+    public int size() {
+        return this.idx;
     }
 
     public T get(int index) {
