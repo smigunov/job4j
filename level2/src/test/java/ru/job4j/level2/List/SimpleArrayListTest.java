@@ -35,7 +35,8 @@ public class SimpleArrayListTest {
     }
     @Test
     public void whenAddThreeElementsAndDeleteThenGetArrayOfTwoElements() {
-        list.delete();
+        Integer deletedValue = list.delete();
+        assertThat(deletedValue, is(1));
         assertThat(list.toArray(), is(new Integer[]{2, 3}));
     }
 

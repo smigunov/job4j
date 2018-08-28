@@ -16,7 +16,8 @@ public class SimpleArrayList<E> {
         this.size++;
     }
     //Метод удаления первого элемент в списке.
-    public void delete() {
+    public E delete() {
+        E result = null;
         Node<E> curItem = this.last;
         Node<E> prevItem = this.last;
         while(curItem.prev != null) {
@@ -26,7 +27,9 @@ public class SimpleArrayList<E> {
         if (prevItem != null) {
             prevItem.prev = null;
             this.size = this.size - 1;
+            result = curItem.data;
         }
+        return result;
     }
 
     public Object[] toArray() {
