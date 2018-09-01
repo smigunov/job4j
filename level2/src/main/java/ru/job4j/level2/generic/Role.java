@@ -10,11 +10,11 @@ public class Role extends Base {
         this.grade = grade;
     }
 
-    public String getGrade () {
+    public String getGrade() {
         return grade;
     }
 
-    public String getName () {
+    public String getName() {
         return name;
 
     }

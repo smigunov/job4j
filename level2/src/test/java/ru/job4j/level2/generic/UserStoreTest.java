@@ -18,7 +18,7 @@ public class UserStoreTest {
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void whenStoreDoesntHaveItemWithIdThenException(){
+    public void whenStoreDoesntHaveItemWithIdThenException() {
         User usr = new User("1й", "Вася", "ДИТ");
         UserStore usrStore = new UserStore();
         usrStore.add(usr);

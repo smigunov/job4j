@@ -6,7 +6,7 @@ public class AbstractStore<T extends Base> implements Store<T> {
     private SimpleArray<T> items = new SimpleArray<T>(100);
 
     @Override
-    public void add (T model) {
+    public void add(T model) {
         items.add(model);
     }
 
@@ -24,7 +24,7 @@ public class AbstractStore<T extends Base> implements Store<T> {
     }
 
     @Override
-    public boolean replace (String id, T model) {
+    public boolean replace(String id, T model) {
         int idx = this.getIndexById(id);
         boolean result = false;
         if (idx >= 0) {
@@ -35,7 +35,7 @@ public class AbstractStore<T extends Base> implements Store<T> {
     }
 
     @Override
-    public boolean delete (String id) {
+    public boolean delete(String id) {
         int idx = this.getIndexById(id);
         boolean result = false;
         if (idx >= 0) {
@@ -46,7 +46,7 @@ public class AbstractStore<T extends Base> implements Store<T> {
     }
 
     @Override
-    public T findById (String id) {
+    public T findById(String id) {
         T result;
         int idx = this.getIndexById(id);
         if (idx >= 0) {

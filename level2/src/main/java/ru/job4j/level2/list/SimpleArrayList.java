@@ -1,7 +1,4 @@
-package ru.job4j.level2.List;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
+package ru.job4j.level2.list;
 import java.util.NoSuchElementException;
 
 public class SimpleArrayList<E> {
@@ -20,7 +17,7 @@ public class SimpleArrayList<E> {
         E result = null;
         Node<E> curItem = this.last;
         Node<E> prevItem = this.last;
-        while(curItem.prev != null) {
+        while (curItem.prev != null) {
             prevItem = curItem;
             curItem = curItem.prev;
         }
@@ -43,7 +40,7 @@ public class SimpleArrayList<E> {
     }
 
     public E get(int index) {
-        if(index > this.size - 1) {
+        if (index > this.size - 1) {
             throw new NoSuchElementException();
         }
         Node<E> result = this.last;

@@ -1,9 +1,7 @@
-package ru.job4j.level2.List;
+package ru.job4j.level2.list;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.LinkedList;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
