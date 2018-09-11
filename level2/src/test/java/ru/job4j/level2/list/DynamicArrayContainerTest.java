@@ -1,4 +1,4 @@
-package ru.job4j.level2.generic;
+package ru.job4j.level2.list;
 
 import org.junit.Test;
 import ru.job4j.level2.list.DynamicArrayContainer;
