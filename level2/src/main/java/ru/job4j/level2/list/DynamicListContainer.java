@@ -35,6 +35,38 @@ public class DynamicListContainer<E> implements Iterable<E> {
         return curNode.data;
     }
 
+    public E delete(int idx) {
+        boolean reverse =  idx > this.size - idx + 1;
+        Node<E> curNode = reverse ? this.last : this.first;
+        int upperBorder = reverse ? this.size - idx - 1 : idx;
+        for(int i = 0; i < upperBorder;  i++) {
+            try {
+                curNode = reverse ? curNode.prev : curNode.next;
+            } catch (NullPointerException e) {
+                throw new NoSuchElementException();
+            }
+        }
+        E value = curNode.data;
+        if (curNode.prev != null) {
+            curNode.prev.next = curNode.next;
+        } else {
+            this.first = curNode.next;
+        }
+
+        if (curNode.next != null) {
+            curNode.next.prev = curNode.prev;
+        } else {
+            this.last = curNode.prev;
+        }
+        this.size--;
+        return value;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+
     @Override
     public Iterator<E> iterator() {
         return new DynamicListContainerIterator<E>();
