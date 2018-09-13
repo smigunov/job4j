@@ -39,7 +39,7 @@ public class DynamicListContainer<E> implements Iterable<E> {
         boolean reverse =  idx > this.size - idx + 1;
         Node<E> curNode = reverse ? this.last : this.first;
         int upperBorder = reverse ? this.size - idx - 1 : idx;
-        for(int i = 0; i < upperBorder;  i++) {
+        for (int i = 0; i < upperBorder; i++) {
             try {
                 curNode = reverse ? curNode.prev : curNode.next;
             } catch (NullPointerException e) {

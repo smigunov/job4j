@@ -6,9 +6,10 @@ import java.util.NoSuchElementException;
 
 public class DynamicArrayContainer<E> implements Iterable<E> {
     Object[] container;
-    int idx = 0;
-    int curLength;
-    final int enlargeSize;
+    private int idx = 0;
+    private int curLength;
+    private final int enlargeSize;
+    private int modCount = 0;
 
     public DynamicArrayContainer(int enlargeSize) {
         container = new Object[100];
@@ -16,14 +17,19 @@ public class DynamicArrayContainer<E> implements Iterable<E> {
         this.enlargeSize = enlargeSize;
     }
 
+    private void enlargeArray() {
+        Object[] oldContainer = this.container;
+        this.curLength += this.enlargeSize;
+        container = new Object[this.curLength];
+        System.arraycopy(oldContainer, 0, this.container, 0, this.curLength - this.enlargeSize);
+    }
+
     public void add(E value) {
         if (idx >= curLength - 1) {
-            Object[] oldContainer = this.container;
-            this.curLength += this.enlargeSize;
-            container = new Object[this.curLength];
-            System.arraycopy(oldContainer, 0, this.container, 0, this.curLength - this.enlargeSize);
+            enlargeArray();
         }
         container[idx] = value;
+        modCount++;
         idx++;
     }
 
@@ -46,10 +52,10 @@ public class DynamicArrayContainer<E> implements Iterable<E> {
 
     private class DynamicArrayContainerIterator<E> implements Iterator<E> {
         int idx = 0;
-        int primaryLength = DynamicArrayContainer.this.curLength;
+        int primaryModCount = DynamicArrayContainer.this.modCount;
         @Override
         public boolean hasNext() {
-            if (this.primaryLength != DynamicArrayContainer.this.curLength) {
+            if (this.primaryModCount != DynamicArrayContainer.this.modCount) {
                 throw new ConcurrentModificationException();
             }
             return (this.idx < DynamicArrayContainer.this.idx);
@@ -57,14 +63,11 @@ public class DynamicArrayContainer<E> implements Iterable<E> {
 
         @Override
         public E next() {
-            if (this.primaryLength != DynamicArrayContainer.this.curLength) {
-                throw new ConcurrentModificationException();
-            }
-            if (this.idx < DynamicArrayContainer.this.idx) {
-                return (E) DynamicArrayContainer.this.container[this.idx++];
-            } else {
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             }
+            return (E) DynamicArrayContainer.this.container[this.idx++];
         }
+
     }
 }
