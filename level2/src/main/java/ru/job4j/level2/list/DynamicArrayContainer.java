@@ -5,11 +5,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class DynamicArrayContainer<E> implements Iterable<E> {
-    Object[] container;
-    private int idx = 0;
-    private int curLength;
+    protected Object[] container;
+    protected int idx = 0;
+    protected int curLength;
     private final int enlargeSize;
-    private int modCount = 0;
+    protected int modCount = 0;
 
     public DynamicArrayContainer(int enlargeSize) {
         container = new Object[100];
@@ -17,20 +17,26 @@ public class DynamicArrayContainer<E> implements Iterable<E> {
         this.enlargeSize = enlargeSize;
     }
 
-    private void enlargeArray() {
-        Object[] oldContainer = this.container;
-        this.curLength += this.enlargeSize;
-        container = new Object[this.curLength];
-        System.arraycopy(oldContainer, 0, this.container, 0, this.curLength - this.enlargeSize);
+    protected void enlargeArrayIfNeed() {
+        if (idx >= curLength - 1) {
+            Object[] oldContainer = this.container;
+            this.curLength += this.enlargeSize;
+            container = new Object[this.curLength];
+            System.arraycopy(oldContainer, 0, this.container, 0, this.curLength - this.enlargeSize);
+        }
     }
 
     public void add(E value) {
-        if (idx >= curLength - 1) {
-            enlargeArray();
-        }
+        enlargeArrayIfNeed();
         container[idx] = value;
         modCount++;
         idx++;
+    }
+
+    public Object[] toArray() {
+        Object[] arr = new Object[this.idx];
+        System.arraycopy(this.container, 0, arr, 0, this.idx);
+        return arr;
     }
 
     public E get(int index) {
