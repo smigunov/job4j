@@ -33,6 +33,19 @@ public class DynamicArrayContainer<E> implements Iterable<E> {
         idx++;
     }
 
+    public void insert(E item, int position) {
+        for (int i = idx - 1; i >= position; i--) {
+            container[i + 1] = container[i];
+        }
+        container[position] = item;
+        this.idx++;
+        modCount++;
+    }
+
+    public int getSize() {
+        return idx;
+    }
+
     public Object[] toArray() {
         Object[] arr = new Object[this.idx];
         System.arraycopy(this.container, 0, arr, 0, this.idx);
@@ -45,10 +58,6 @@ public class DynamicArrayContainer<E> implements Iterable<E> {
         } else {
             throw new NoSuchElementException();
         }
-    }
-
-    public int getSize() {
-        return this.idx;
     }
 
     @Override
