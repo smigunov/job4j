@@ -69,13 +69,14 @@ public class DynamicListContainer<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new DynamicListContainerIterator<E>();
+        return new DynamicListContainerIterator();
     }
 
-    private class DynamicListContainerIterator<E> implements Iterator<E> {
+    private class DynamicListContainerIterator implements Iterator<E> {
         int idx = 0;
         int primaryLength = DynamicListContainer.this.size;
-        Node<E> curNode = (Node<E>) DynamicListContainer.this.first;    //Без cast'a не компилируется. Подскажите почему?
+        //Node<E> curNode = (Node<E>) DynamicListContainer.this.first;    //Без cast'a не компилируется. Подскажите почему?
+        Node<E> curNode = DynamicListContainer.this.first;
 
         @Override
         public boolean hasNext() {

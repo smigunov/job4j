@@ -12,7 +12,7 @@ public class SimpleSet<E> implements Iterable<E>  {
         dynArray = new DynamicArrayContainer<E>(enlargeSize);
     }
 
-    public void add (E addingValue) {
+    public void add(E addingValue) {
         int insertPosition = -1;
         int size = dynArray.getSize();
 
