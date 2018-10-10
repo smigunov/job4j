@@ -6,37 +6,35 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class SimpleSet<E> implements Iterable<E>  {
-    private DynamicArrayContainer<E> dynArray;
+    private DynamicArrayContainer<E> arr;
 
     public SimpleSet(int enlargeSize) {
-        dynArray = new DynamicArrayContainer<E>(enlargeSize);
+        arr = new DynamicArrayContainer<E>(enlargeSize);
     }
 
     public void add(E addingValue) {
-        int insertPosition = -1;
-        int size = dynArray.getSize();
-
+        int position = -1;
+        int size = arr.getSize();
         for (int i = 0; i < size; i++) {
-            E curItem = dynArray.get(i);
+            E curItem = arr.get(i);
             if (curItem.hashCode() == addingValue.hashCode()) {
                 return;
             }
             if (curItem.hashCode() > addingValue.hashCode()) {
-                insertPosition = i;
+                position = i;
                 break;
             }
         }
-
-        insertPosition = (insertPosition == -1) ? size : insertPosition;
-        dynArray.insert(addingValue, insertPosition);
+        position = (position == -1) ? size : position;
+        arr.insert(addingValue, position);
     }
 
     public Object[] toArray() {
-        return dynArray.toArray();
+        return arr.toArray();
     }
 
     @Override
     public Iterator<E> iterator() {
-        return dynArray.iterator();
+        return arr.iterator();
     }
 }
