@@ -21,17 +21,6 @@ public class SimpleSetTest {
     }
 
     @Test
-    public void testSort() {
-        SimpleSet<Integer> ss = new SimpleSet<>(10);
-        ss.add(5);
-        ss.add(2);
-        ss.add(1);
-        ss.add(3);
-        ss.add(4);
-        assertThat(ss.toArray(), is(new Integer[]{1, 2, 3, 4, 5}));
-    }
-
-    @Test
     public void testIterable() {
         SimpleSet<Integer> ss = new SimpleSet<>(2);
         ss.add(2);
@@ -44,7 +33,11 @@ public class SimpleSetTest {
         for (Integer itemValue : ss) {
             lst.add(itemValue);
         }
-        assertThat(lst.toArray(), is(new Integer[] {1, 2, 3, 4}));
+        assertThat(lst.size(), is(4));
+        assertThat(lst.contains(1), is(true));
+        assertThat(lst.contains(2), is(true));
+        assertThat(lst.contains(3), is(true));
+        assertThat(lst.contains(4), is(true));
     }
 
 }

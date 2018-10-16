@@ -12,21 +12,21 @@ public class SimpleSet<E> implements Iterable<E>  {
         arr = new DynamicArrayContainer<E>(enlargeSize);
     }
 
-    public void add(E addingValue) {
-        int position = -1;
-        int size = arr.getSize();
-        for (int i = 0; i < size; i++) {
-            E curItem = arr.get(i);
-            if (curItem.hashCode() == addingValue.hashCode()) {
-                return;
-            }
-            if (curItem.hashCode() > addingValue.hashCode()) {
-                position = i;
-                break;
+    private Boolean contains(E value) {
+        for (E item : arr) {
+            if (value.equals(item)) {
+                return true;
             }
         }
-        position = (position == -1) ? size : position;
-        arr.insert(addingValue, position);
+        return false;
+    }
+
+    public boolean add(E value) {
+        if (contains(value)) {
+            return false;
+        }
+        arr.add(value);
+        return true;
     }
 
     public Object[] toArray() {
