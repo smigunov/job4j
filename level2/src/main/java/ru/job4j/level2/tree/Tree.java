@@ -10,22 +10,17 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     public Tree(E value) {
         this.root = new Node<>(value);
     }
-
     @Override
     public boolean add(E parent, E child) {
-        boolean result = false;
-        if (findBy(child).isPresent()) {
-            result = false; // Привязываемая нода уже есть в дереве.
-        } else {
-            try {
-                findBy(parent).get().add(new Node<E>(child));
-                result = true;
-            } catch (NoSuchElementException e) {
-                result = false;
-            }
+        Optional<Node<E>> base = findBy(parent);
+        Optional<Node<E>> leaf = findBy(child);
+        boolean result = base.isPresent() && !leaf.isPresent();
+        if (result) {
+            base.get().add(new Node<E>(child));
         }
         return result;
     }
+
     @Override
     public Optional<Node<E>> findBy(E value) {
         Optional<Node<E>> rsl = Optional.empty();
