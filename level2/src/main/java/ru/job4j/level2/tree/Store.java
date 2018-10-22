@@ -21,7 +21,8 @@ public  class Store {
             User existingUser = prevMap.get(usr.id);
             if (existingUser == null){
                 result.created++;
-            } else if (!existingUser.name.equals(usr.name)) {
+            //} else if (!existingUser.name.equals(usr.name)) {
+            } else if (!existingUser.equals(usr)) {
                 result.edited++;
             }
         }
@@ -40,6 +41,20 @@ public  class Store {
         public User(int id, String name){
             this.id = id;
             this.name = name;
+        }
+
+        @Override
+        public boolean equals (Object obj) {
+            boolean result = false;
+            if (obj != null) {
+                if (obj instanceof User) {
+                    User usrObj = (User) obj;
+                    if (usrObj.name.equals(this.name) && usrObj.id == this.id) {
+                        result = true;
+                    }
+                }
+            }
+            return result;
         }
     }
 }
