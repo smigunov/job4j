@@ -4,24 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DiffArray {
-    ArrayList<Integer> a;
-    ArrayList<Integer> b;
-    public DiffArray() {
-        a = new ArrayList<Integer>();
-        b = new ArrayList<Integer>();
-    }
-
-    public ArrayList<Integer> getA() {
-        return this.a;
-    }
-
-    public ArrayList<Integer> getB() {
-        return this.b;
-    }
-
-    public static DiffArray diff(int[] src) {
-        DiffArray diffArr = new DiffArray();
-
+    public Pair<ArrayList<Integer>, ArrayList<Integer>> diff(int[] src) {
+        ArrayList<Integer> a = new ArrayList<>();
+        ArrayList<Integer> b = new ArrayList<>();
+        Pair<ArrayList<Integer>, ArrayList<Integer>> result = new Pair(a, b);
         if (src.length > 0) {
             Arrays.sort(src);
             int sum1 = 0;
@@ -30,15 +16,14 @@ public class DiffArray {
             int i2 = 0;
             for (int i = src.length - 1; i >= 0; i--) {
                 if (sum1 < sum2) {
-                    diffArr.a.add(src[i]);
+                    a.add(src[i]);
                     sum1 += src[i];
                 } else {
-                    diffArr.b.add(src[i]);
+                    b.add(src[i]);
                     sum2 += src[i];
                 }
             }
         }
-
-        return diffArr;
+        return result;
     }
 }
