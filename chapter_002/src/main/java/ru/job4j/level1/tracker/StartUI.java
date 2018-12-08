@@ -1,5 +1,7 @@
 package ru.job4j.level1.tracker;
 
+import java.util.Scanner;
+
 public class StartUI {
     private Input input;
     private Output output;
@@ -21,11 +23,21 @@ public class StartUI {
             menu.select(key);            
         } while (!menu.doesHeWants2Exit());
     }
-    
+
+//    public static void main(String[] args) {
+//        Output output = new ConsoleOutput();
+//        Input input = new ValidateInput(new ConsoleInput());
+//        new StartUI(input, output).init();
+//    }
 
     public static void main(String[] args) {
-        Output output = new ConsoleOutput();
-        Input input = new ValidateInput(new ConsoleInput());
+        Output output = new ConsumerOutput(System.out::println, System.out::println);
+        Input input = new ValidateInput(
+                    new ConsumerInput(
+                            new Scanner(System.in)::nextLine
+                            ,System.out::println
+                    )
+        );
         new StartUI(input, output).init();
     }
 }

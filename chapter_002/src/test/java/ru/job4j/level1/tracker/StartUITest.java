@@ -7,9 +7,11 @@ import static org.junit.Assert.assertThat;
 public class StartUITest {
     @Test
     public void whenAddNewItemAndShowAll() {
-        Input input = new StubInput(new String[] {"0", "testName1", "TestDescr1", "0", "testName2", "TestDescr2",  "1", "6" });
+        StubInput input = new StubInput(new String[] {"0", "testName1", "TestDescr1", "0", "testName2", "TestDescr2",  "1", "6" });
         StubOutput output = new StubOutput(new String[100]);
-        StartUI ui = new StartUI(input, output);
+        Input consInput = new ConsumerInput(input::ask, (x)->{});
+        Output consOutput = new ConsumerOutput(output::say, output::answer);
+        StartUI ui = new StartUI(consInput, consOutput);
         ui.init();
         String[] etalon = new String[] {"ITEM-1 : testName1 : TestDescr1", "ITEM-2 : testName2 : TestDescr2"};
         assertThat(output.getPhrases(), is(etalon));
