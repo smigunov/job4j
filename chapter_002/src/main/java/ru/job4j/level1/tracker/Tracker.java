@@ -2,6 +2,8 @@ package ru.job4j.level1.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 class Tracker {
     private List<Item> items = new ArrayList<Item>();
@@ -49,30 +51,19 @@ class Tracker {
         }
     }
 
-    //public Item[] getAll() {
     public List<Item> getAll() {
         return this.items;
     }
 
 
     public List<Item> findByName(String name) {
-        List<Item> foundItems = new ArrayList<Item>();
-        int idx = 0;
-        for (Item item : this.items) {
-            if (item.getName().equals(name)) {
-                foundItems.add(item);
-                idx++;
-            }
-        }
-        return foundItems;
+        Predicate<Item> searchByName = itm -> itm.getName().equals(name);
+        return this.items.stream().filter(searchByName).collect(Collectors.toList());
     }
 
     public Item findById(String id) {
-        int pos = getPositionById(id);
-        if (pos >= 0) {
-            return  this.items.get(pos);
-        }
-        return null;
+        Predicate<Item> searchById = itm -> itm.getId().equals(id);
+        return this.items.stream().filter(searchById).findFirst().get();
     }
 
     public int getCount() {
