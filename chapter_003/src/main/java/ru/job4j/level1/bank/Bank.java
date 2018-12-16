@@ -1,6 +1,7 @@
 package ru.job4j.level1.bank;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class Bank {
     private Map<User, List<Account>> userAccounts = new HashMap<>();
@@ -23,63 +24,34 @@ public class Bank {
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
-        List<Account> listAcc = getUserAccounts(passport);
-        int idx = listAcc.indexOf(account);
-        if (idx >= 0) {
-            listAcc.remove(idx);
-        }
-    }
-
-    private User getUser(String passport) {
-        User resultUser = null;
-        for (User user : this.userAccounts.keySet()) {
-            if (passport.equals(user.getPassport())) {
-                resultUser = user;
-                break;
-            }
-        }
-        return resultUser;
+        this.userAccounts.entrySet().stream()
+                .filter(entry -> entry.getKey().getPassport().equals(passport))
+                .findFirst().get().getValue().remove(account);
     }
 
     public List<Account> getUserAccounts(String passport) {
-        List<Account> result = null;
-        User user = getUser(passport);
-        if (user != null) {
-            result = this.userAccounts.get(user);
-        }
-        return result;
-    }
-
-    private Account getAccount(List<Account> listAcc, String reqs) {
-        Account result = null;
-        for (Account account : listAcc) {
-            if (reqs.equals(account.getReqs())) {
-                result = account;
-            }
-        }
-        return result;
-    }
-
-    private Account getAccount(String passport, String requisite) {
-        User user = getUser(passport);
-        Account result = null;
-        if (user != null) {
-            result = getAccount(this.userAccounts.get(user), requisite);
-        }
-        return result;
+        return this.userAccounts.entrySet().stream().filter(entry -> entry.getKey().getPassport().equals(passport)).findFirst().get().getValue();
     }
 
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String dstPassport, String dstRequisite, double amount) {
-        boolean result = false;
-        Account srcAccount = getAccount(srcPassport, srcRequisite);
-        Account dstAccount = getAccount(dstPassport, dstRequisite);
-        if ((srcAccount != null) && (dstAccount != null) && (srcAccount.getValue() >= amount)) {
-            srcAccount.setValue(srcAccount.getValue() - amount);
-            dstAccount.setValue(dstAccount.getValue() + amount);
-            result = true;
-        }
-        return result;
+        return this.userAccounts.entrySet().stream().filter(entry -> entry.getKey().getPassport().equals(srcPassport)).findFirst().map(
+            entry -> entry.getValue().stream().filter(acc -> (srcRequisite.equals(acc.getReqs()) && acc.getValue() >= amount)).findFirst().map(
+                srcAcc -> {
+                    return this.userAccounts.entrySet().stream().filter(entryDst -> entryDst.getKey().getPassport().equals(dstPassport)).findFirst().map(
+                                entryDst -> {
+                                    return entryDst.getValue().stream().filter(acc -> dstRequisite.equals(acc.getReqs())).findFirst().map(
+                                        dstAcc ->{
+                                            srcAcc.setValue(srcAcc.getValue() - amount);
+                                            dstAcc.setValue(dstAcc.getValue() + amount);
+                                            return true;
+                                        }
+                                    ).orElseGet(()->{return false;});
+                                }
+                        ).orElseGet(()->{return false;});
+                }
+            ).orElseGet(()->{return false;})
+        ).orElseGet(()->{return false;});
     }
 
 }

@@ -1,6 +1,7 @@
 package ru.job4j.level1.tracker;
 
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 public class StartUI {
     private Input input;
@@ -18,9 +19,9 @@ public class StartUI {
         boolean exitProgram = false;
         menu.fillActions();
         do {
-            menu.show();   
+            menu.show();
             int key = input.ask("Your choice:", new int[] {0, 1, 2, 3, 4, 5, 6});
-            menu.select(key);            
+            menu.select(key);
         } while (!menu.doesHeWants2Exit());
     }
 
