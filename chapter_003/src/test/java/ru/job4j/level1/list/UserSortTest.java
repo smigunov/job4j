@@ -12,10 +12,12 @@ import static org.junit.Assert.*;
 public class UserSortTest {
     @Test
     public void when3UsersThenSortByAge() throws Exception {
-        List<User> userList = new ArrayList<>();
-        userList.add(new User(1, "Вася", "Москва", 20));
-        userList.add(new User(2, "Петя", "Волгоград", 30));
-        userList.add(new User(3, "Маша", "Уфа", 10));
+        List<User> userList = List.of(
+                new User(1, "Вася", "Москва", 20),
+                new User(2, "Петя", "Волгоград", 30),
+                new User(3, "Маша", "Уфа", 10)
+        );
+
         UserSort us = new UserSort();
         Set<User> userSet = us.sort(userList);
         assertThat(userSet.iterator().next().getAge(), is(10));
@@ -23,10 +25,12 @@ public class UserSortTest {
 
     @Test
     public void testSortNameLength() throws Exception {
-        List<User> userList = new ArrayList<>();
-        userList.add(new User(1, "11", "Москва", 20));
-        userList.add(new User(2, "1", "Волгоград", 30));
-        userList.add(new User(3, "111", "Уфа", 10));
+        List<User> userList = new ArrayList<User>(List.of(
+                new User(1, "11", "Москва", 20),
+                new User(2, "1", "Волгоград", 30),
+                new User(3, "111", "Уфа", 10)
+        ));
+
         UserSort us = new UserSort();
         List<User> userSort = us.sortNameLength(userList);
         assertThat(userSort.iterator().next().getName(), is("1"));
@@ -34,12 +38,13 @@ public class UserSortTest {
 
     @Test
     public void testSortByAllFields() throws Exception {
-        List<User> userList = new ArrayList<>();
-        userList.add(new User(1, "11", "Москва", 20));
-        userList.add(new User(2, "1", "Волгоград", 30));
-        userList.add(new User(2, "1", "Волгоград", 40));
-        userList.add(new User(3, "111", "Уфа", 60));
-        userList.add(new User(3, "111", "Уфа", 50));
+        List<User> userList = new ArrayList<>(List.of(
+                new User(1, "11", "Москва", 20),
+                new User(2, "1", "Волгоград", 30),
+                new User(2, "1", "Волгоград", 40),
+                new User(3, "111", "Уфа", 60),
+                new User(3, "111", "Уфа", 50)
+        ));
 
         UserSort us = new UserSort();
         List<User> userSort = us.sortByAllFields(userList);
