@@ -8,14 +8,14 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class CalcFunctionTest {
-    @Test
-    public void whenLinear() {
-        CalcFunction l  = new CalcFunction();
-        List<Double> result = new ArrayList<>();
-        result = l.diapason(1,3, x -> x * 2);
-        assertThat(result.toArray(), is(new Double[] {2.0, 4.0, 6.0}));
-    }
+public class CalcFunctionTest {@Test
+public void whenLinear() {
+    CalcFunction l  = new CalcFunction();
+    List<Double> result = new ArrayList<>();
+    result = l.diapason(1,3, x -> x * 2);
+    assertThat(result.toArray(), is(new Double[] {2.0, 4.0, 6.0}));
+}
+
 
     @Test
     public void whenQuadr() {
