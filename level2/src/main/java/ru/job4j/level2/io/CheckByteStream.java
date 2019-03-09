@@ -1,7 +1,8 @@
 package ru.job4j.level2.io;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CheckByteStream {
     public boolean isNumber(InputStream in) {
@@ -21,5 +22,27 @@ public class CheckByteStream {
             }
         }
         return result;
+    }
+
+    public void dropAbuses(InputStream in, OutputStream out, String[] abuse) {
+        int wordStart = 0;
+        String word;
+        HashMap<String, String> abuseMap = new HashMap<String, String>();
+        for (String s : abuse) {
+            abuseMap.put(s, s);
+        }
+        try (BufferedReader br  = new BufferedReader(new InputStreamReader(in));
+            OutputStreamWriter writer = new OutputStreamWriter(out)) {
+            word = br.readLine();
+            while (word != null) {
+                if(!abuseMap.containsKey(word)) {
+                    writer.write(word);
+                    writer.write("\n");
+                }
+                word = br.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
