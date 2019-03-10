@@ -14,7 +14,8 @@ public class CheckByteStreamTest {
     @Test
     public void whenEvenNumberThenTrue() {
         CheckByteStream bs = new CheckByteStream();
-        ByteArrayInputStream s = new ByteArrayInputStream(new byte[]{1,2,3});
+        //ByteArrayInputStream s = new ByteArrayInputStream(new byte[]{1,2,3});
+        ByteArrayInputStream s = new ByteArrayInputStream("123".getBytes());
         assertThat(bs.isNumber(s), is(true));
     }
 
@@ -22,7 +23,7 @@ public class CheckByteStreamTest {
     public void whenNotEvenNumberThenFalse() {
         Integer testVal = 3;
         CheckByteStream bs = new CheckByteStream();
-        ByteArrayInputStream s = new ByteArrayInputStream(new byte[]{3,5,7});
+        ByteArrayInputStream s = new ByteArrayInputStream("357".getBytes());
         assertThat(bs.isNumber(s), is(false));
     }
 

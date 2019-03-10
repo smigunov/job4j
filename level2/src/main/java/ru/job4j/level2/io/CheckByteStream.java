@@ -7,19 +7,20 @@ import java.util.Map;
 public class CheckByteStream {
     public boolean isNumber(InputStream in) {
         boolean result = false;
-        if (in instanceof ByteArrayInputStream) {
-            try (ByteArrayInputStream bs = (ByteArrayInputStream)in) {
-                int b = bs.read();
-                while(b != -1){
-                    if (b % 2 == 0) {
+        try (InputStreamReader r = new InputStreamReader(in)) {
+            int b = r.read();
+            while (b != -1){
+                if (b >= 48 && b <= 57) {
+                    int val = Integer.parseInt(String.valueOf(b));
+                    if (val % 2 == 0) {
                         result = true;
                         break;
                     }
-                    b = bs.read();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+                b = r.read();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return result;
     }
