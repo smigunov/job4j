@@ -14,8 +14,12 @@ public class CheckByteStream {
                     int val = Integer.parseInt(String.valueOf(b));
                     if (val % 2 == 0) {
                         result = true;
-                        break;
+                    } else {
+                        result = false;
                     }
+                } else {
+                    result = false;
+                    break;
                 }
                 b = r.read();
             }
