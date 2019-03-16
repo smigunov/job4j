@@ -9,7 +9,7 @@ public class CheckByteStream {
         boolean result = false;
         try (InputStreamReader r = new InputStreamReader(in)) {
             int b = r.read();
-            while (b != -1){
+            while (b != -1) {
                 if (b >= 48 && b <= 57) {
                     int val = Integer.parseInt(String.valueOf(b));
                     if (val % 2 == 0) {
@@ -40,7 +40,7 @@ public class CheckByteStream {
             OutputStreamWriter writer = new OutputStreamWriter(out)) {
             word = br.readLine();
             while (word != null) {
-                if(!abuseMap.containsKey(word)) {
+                if (!abuseMap.containsKey(word)) {
                     writer.write(word);
                     writer.write("\n");
                 }

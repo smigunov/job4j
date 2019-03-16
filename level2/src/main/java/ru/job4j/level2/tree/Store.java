@@ -13,13 +13,13 @@ public  class Store {
         return map;
     }
 
-    public static Info diff(List<User> previous, List<User> current){
+    public static Info diff(List<User> previous, List<User> current) {
         Info result = new Info();
         Map<Integer, User> prevMap = fillMap(previous);
         Map<Integer, User> curMap = fillMap(current);
         for (User usr : current) {
             User existingUser = prevMap.get(usr.id);
-            if (existingUser == null){
+            if (existingUser == null) {
                 result.created++;
             //} else if (!existingUser.name.equals(usr.name)) {
             } else if (!existingUser.equals(usr)) {
@@ -38,13 +38,13 @@ public  class Store {
     static class User {
         int     id;
         String  name;
-        public User(int id, String name){
+        public User(int id, String name) {
             this.id = id;
             this.name = name;
         }
 
         @Override
-        public boolean equals (Object obj) {
+        public boolean equals(Object obj) {
             boolean result = false;
             if (obj != null) {
                 if (obj instanceof User) {
@@ -55,6 +55,11 @@ public  class Store {
                 }
             }
             return result;
+        }
+
+        @Override
+        public int hashCode() {
+            return super.hashCode();
         }
     }
 }
