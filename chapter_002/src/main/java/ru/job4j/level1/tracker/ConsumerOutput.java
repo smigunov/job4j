@@ -12,12 +12,12 @@ public class ConsumerOutput implements Output {
     }
 
     @Override
-    public void say (String str) {
+    public void say(String str) {
         sayMethod.accept(str);
     }
 
     @Override
-    public void answer (String str) {
+    public void answer(String str) {
         answerMethod.accept(str);
     }
 }

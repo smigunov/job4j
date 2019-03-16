@@ -12,13 +12,13 @@ public class ConsumerInput implements Input {
     }
 
     @Override
-    public String ask (String question) {
+    public String ask(String question) {
         this.outputMethod.accept(question);
         return this.inputMethod.get();
     }
 
     @Override
-    public int ask (String question, int[] range) {
+    public int ask(String question, int[] range) {
         int key = Integer.valueOf(this.ask(question));
         boolean isInRange = false;
         for (int val : range) {

@@ -9,7 +9,7 @@ public class StartUITest {
     public void whenAddNewItemAndShowAll() {
         StubInput input = new StubInput(new String[] {"0", "testName1", "TestDescr1", "0", "testName2", "TestDescr2",  "1", "6" });
         StubOutput output = new StubOutput(new String[100]);
-        Input consInput = new ConsumerInput(input::ask, (x)->{});
+        Input consInput = new ConsumerInput(input::ask, (x)-> { });
         Output consOutput = new ConsumerOutput(output::say, output::answer);
         StartUI ui = new StartUI(consInput, consOutput);
         ui.init();

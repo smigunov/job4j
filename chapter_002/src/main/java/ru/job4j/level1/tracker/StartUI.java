@@ -35,8 +35,7 @@ public class StartUI {
         Output output = new ConsumerOutput(System.out::println, System.out::println);
         Input input = new ValidateInput(
                     new ConsumerInput(
-                            new Scanner(System.in)::nextLine
-                            ,System.out::println
+                            new Scanner(System.in)::nextLine, System.out::println
                     )
         );
         new StartUI(input, output).init();
