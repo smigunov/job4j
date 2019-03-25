@@ -13,11 +13,11 @@ public class StudentTest {
     @Test
     public void testStudentsBound() {
         List<Student> lst = new ArrayList<Student>();
-        Student s2 = new Student("Студент 2" , 2);
-        Student s5 = new Student("Студент 5" , 5);
-        Student s3 = new Student("Студент 3" , 3);
-        Student s6 = new Student("Студент 6" , 6);
-        Student s4 = new Student("Студент 4" , 4);
+        Student s2 = new Student("Студент 2", 2);
+        Student s5 = new Student("Студент 5", 5);
+        Student s3 = new Student("Студент 3", 3);
+        Student s6 = new Student("Студент 6", 6);
+        Student s4 = new Student("Студент 4", 4);
         lst.add(s2);
         lst.add(s5);
         lst.add(s3);
