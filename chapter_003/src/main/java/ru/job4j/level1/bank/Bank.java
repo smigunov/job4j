@@ -41,17 +41,17 @@ public class Bank {
                     return this.userAccounts.entrySet().stream().filter(entryDst -> entryDst.getKey().getPassport().equals(dstPassport)).findFirst().map(
                                 entryDst -> {
                                     return entryDst.getValue().stream().filter(acc -> dstRequisite.equals(acc.getReqs())).findFirst().map(
-                                        dstAcc ->{
+                                        dstAcc -> {
                                             srcAcc.setValue(srcAcc.getValue() - amount);
                                             dstAcc.setValue(dstAcc.getValue() + amount);
                                             return true;
                                         }
-                                    ).orElseGet(()->{return false;});
+                                    ).orElseGet(()-> { return false; });
                                 }
-                        ).orElseGet(()->{return false;});
+                        ).orElseGet(()-> { return false; });
                 }
-            ).orElseGet(()->{return false;})
-        ).orElseGet(()->{return false;});
+            ).orElseGet(()-> { return false; })
+        ).orElseGet(()-> { return false; });
     }
 
 }
